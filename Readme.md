@@ -27,7 +27,7 @@ Or clone and build:
 ```bash
 git clone https://github.com/hsdfat/go-project-dump.git
 cd go-project-dump
-go build -o go-project-dump main.go
+go build go-project-dump main.go
 ```
 
 ### Basic Usage
@@ -37,29 +37,29 @@ go build -o go-project-dump main.go
 go-project-dump /path/to/your/project
 
 # Save output to file
-go-project-dump /path/to/your/project -o analysis.md
+go-project-dump /path/to/your/project analysis.md
 
 # Analyze multiple projects
-go-project-dump /project1 /project2 /project3 -o combined-analysis.md
+go-project-dump /project1 /project2 /project3 combined-analysis.md
 
 # Analyze microservices architecture
-go-project-dump /app/frontend /app/backend /app/api -o microservices-dump.md
+go-project-dump /app/frontend /app/backend /app/api microservices-dump.md
 ```
 
 ## 📖 Usage Examples
 
 ### Single Project Analysis
 ```bash
-go-project-dump ~/my-react-app -o react-analysis.md
+go-project-dump ~/my-react-app react-analysis.md
 ```
 
 ### Multiple Project Analysis
 ```bash
 # Analyze frontend and backend together
-go-project-dump ~/myapp/client ~/myapp/server -o fullstack-analysis.md
+go-project-dump ~/myapp/client ~/myapp/server fullstack-analysis.md
 
 # Compare multiple similar projects
-go-project-dump ~/project-v1 ~/project-v2 ~/project-v3 -o version-comparison.md
+go-project-dump ~/project-v1 ~/project-v2 ~/project-v3 version-comparison.md
 ```
 
 ### Microservices Architecture
@@ -68,7 +68,7 @@ go-project-dump \
   ~/microservices/user-service \
   ~/microservices/payment-service \
   ~/microservices/notification-service \
-  -o microservices-overview.md
+  microservices-overview.md
 ```
 
 ## 🔧 Supported Technologies
@@ -127,46 +127,46 @@ go-project-dump generates a comprehensive markdown report containing:
 
 ### Code Reviews
 ```bash
-go-project-dump /path/to/feature-branch -o feature-review.md
+go-project-dump /path/to/feature-branch feature-review.md
 ```
 
 ### Documentation
 ```bash
-go-project-dump /project -o project-documentation.md
+go-project-dump /project project-documentation.md
 ```
 
 ### AI Analysis
 ```bash
 # Perfect for feeding to AI tools for code analysis
-go-project-dump /complex-project -o ai-analysis-input.md
+go-project-dump /complex-project ai-analysis-input.md
 ```
 
 ### Project Comparison
 ```bash
-go-project-dump /old-version /new-version -o migration-analysis.md
+go-project-dump /old-version /new-version migration-analysis.md
 ```
 
 ### Team Onboarding
 ```bash
-go-project-dump /team-project -o onboarding-guide.md
+go-project-dump /team-project onboarding-guide.md
 ```
 
 ## ⚙️ Command Line Options
 
 ```
-Usage: go-project-dump <project-paths...> [-o output-file]
+Usage: go-project-dump <project-paths...> [output-file]
 
 Arguments:
   project-paths    One or more paths to project directories (space-separated)
 
 Options:
-  -o output-file   Optional output file (default: stdout)
+  output-file   Optional output file (default: stdout)
 
 Examples:
   go-project-dump /path/to/project
   go-project-dump /path/to/project1 /path/to/project2
-  go-project-dump /path/to/project -o output.md
-  go-project-dump /frontend /backend -o combined.md
+  go-project-dump /path/to/project output.md
+  go-project-dump /frontend /backend combined.md
 ```
 
 ## 🚫 Filtering Logic
@@ -198,7 +198,7 @@ go-project-dump intelligently excludes:
 git clone https://github.com/hsdfat/go-project-dump.git
 cd go-project-dump
 go mod tidy
-go build -o go-project-dump main.go
+go build go-project-dump main.go
 ```
 
 ### Running Tests
