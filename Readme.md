@@ -1,4 +1,4 @@
-# ProjectDump 🚀
+# go-project-dump 🚀
 
 A powerful CLI tool that analyzes project technologies, filters out non-essential files, and compiles source code and directory structure into a single readable file. Perfect for code reviews, documentation, sharing projects, or AI analysis.
 
@@ -26,45 +26,45 @@ Or clone and build:
 
 ```bash
 git clone https://github.com/hsdfat/go-project-dump.git
-cd projectdump
-go build -o projectdump main.go
+cd go-project-dump
+go build -o go-project-dump main.go
 ```
 
 ### Basic Usage
 
 ```bash
 # Analyze a single project
-projectdump /path/to/your/project
+go-project-dump /path/to/your/project
 
 # Save output to file
-projectdump /path/to/your/project -o analysis.md
+go-project-dump /path/to/your/project -o analysis.md
 
 # Analyze multiple projects
-projectdump /project1 /project2 /project3 -o combined-analysis.md
+go-project-dump /project1 /project2 /project3 -o combined-analysis.md
 
 # Analyze microservices architecture
-projectdump /app/frontend /app/backend /app/api -o microservices-dump.md
+go-project-dump /app/frontend /app/backend /app/api -o microservices-dump.md
 ```
 
 ## 📖 Usage Examples
 
 ### Single Project Analysis
 ```bash
-projectdump ~/my-react-app -o react-analysis.md
+go-project-dump ~/my-react-app -o react-analysis.md
 ```
 
 ### Multiple Project Analysis
 ```bash
 # Analyze frontend and backend together
-projectdump ~/myapp/client ~/myapp/server -o fullstack-analysis.md
+go-project-dump ~/myapp/client ~/myapp/server -o fullstack-analysis.md
 
 # Compare multiple similar projects
-projectdump ~/project-v1 ~/project-v2 ~/project-v3 -o version-comparison.md
+go-project-dump ~/project-v1 ~/project-v2 ~/project-v3 -o version-comparison.md
 ```
 
 ### Microservices Architecture
 ```bash
-projectdump \
+go-project-dump \
   ~/microservices/user-service \
   ~/microservices/payment-service \
   ~/microservices/notification-service \
@@ -73,7 +73,7 @@ projectdump \
 
 ## 🔧 Supported Technologies
 
-ProjectDump can detect and analyze:
+go-project-dump can detect and analyze:
 
 ### Programming Languages
 - **JavaScript** (Node.js, browser-based)
@@ -101,7 +101,7 @@ ProjectDump can detect and analyze:
 
 ## 📊 Output Format
 
-ProjectDump generates a comprehensive markdown report containing:
+go-project-dump generates a comprehensive markdown report containing:
 
 ### 1. Project Summary
 - Combined statistics (file counts, sizes, languages)
@@ -127,34 +127,34 @@ ProjectDump generates a comprehensive markdown report containing:
 
 ### Code Reviews
 ```bash
-projectdump /path/to/feature-branch -o feature-review.md
+go-project-dump /path/to/feature-branch -o feature-review.md
 ```
 
 ### Documentation
 ```bash
-projectdump /project -o project-documentation.md
+go-project-dump /project -o project-documentation.md
 ```
 
 ### AI Analysis
 ```bash
 # Perfect for feeding to AI tools for code analysis
-projectdump /complex-project -o ai-analysis-input.md
+go-project-dump /complex-project -o ai-analysis-input.md
 ```
 
 ### Project Comparison
 ```bash
-projectdump /old-version /new-version -o migration-analysis.md
+go-project-dump /old-version /new-version -o migration-analysis.md
 ```
 
 ### Team Onboarding
 ```bash
-projectdump /team-project -o onboarding-guide.md
+go-project-dump /team-project -o onboarding-guide.md
 ```
 
 ## ⚙️ Command Line Options
 
 ```
-Usage: projectdump <project-paths...> [-o output-file]
+Usage: go-project-dump <project-paths...> [-o output-file]
 
 Arguments:
   project-paths    One or more paths to project directories (space-separated)
@@ -163,15 +163,15 @@ Options:
   -o output-file   Optional output file (default: stdout)
 
 Examples:
-  projectdump /path/to/project
-  projectdump /path/to/project1 /path/to/project2
-  projectdump /path/to/project -o output.md
-  projectdump /frontend /backend -o combined.md
+  go-project-dump /path/to/project
+  go-project-dump /path/to/project1 /path/to/project2
+  go-project-dump /path/to/project -o output.md
+  go-project-dump /frontend /backend -o combined.md
 ```
 
 ## 🚫 Filtering Logic
 
-ProjectDump intelligently excludes:
+go-project-dump intelligently excludes:
 
 ### Directories
 - `node_modules`, `vendor`, `__pycache__`
@@ -196,9 +196,9 @@ ProjectDump intelligently excludes:
 
 ```bash
 git clone https://github.com/hsdfat/go-project-dump.git
-cd projectdump
+cd go-project-dump
 go mod tidy
-go build -o projectdump main.go
+go build -o go-project-dump main.go
 ```
 
 ### Running Tests
@@ -217,10 +217,10 @@ go test ./...
 
 ## 📄 Example Output
 
-Here's what a typical ProjectDump analysis looks like:
+Here's what a typical go-project-dump analysis looks like:
 
 ```markdown
-# ProjectDump Multi-Project Analysis
+# go-project-dump Multi-Project Analysis
 
 **Generated on:** 2025-07-19 14:30:25
 **Analyzed Projects:**
