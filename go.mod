@@ -1,3 +1,3 @@
 module github.com/hsdfat/go-project-dump
 
-go 1.23.3
+go 1.21

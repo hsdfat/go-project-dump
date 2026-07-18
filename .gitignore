@@ -1,0 +1,15 @@
+# Compiled binary (matches the module/dir name)
+/go-project-dump
+go-project-dump.exe
+
+# Test & coverage artifacts
+*.out
+coverage.*
+
+# Editor / OS cruft
+.idea/
+.vscode/
+.DS_Store
+
+# Local dumps produced by the tool
+*.dump.md
