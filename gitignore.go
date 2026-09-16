@@ -47,11 +47,21 @@ func NewGitignore(lines []string) *Gitignore {
 // LoadGitignore reads patterns from the given file. A missing file yields an
 // empty (no-op) matcher and no error.
 func LoadGitignore(path string) (*Gitignore, error) {
-	f, err := os.Open(path)
+	lines, err := readLines(path)
 	if err != nil {
 		if os.IsNotExist(err) {
 			return &Gitignore{}, nil
 		}
+		return nil, err
+	}
+	return NewGitignore(lines), nil
+}
+
+// readLines reads a file into one string per line, using a generous scanner
+// buffer so long lines don't get truncated.
+func readLines(path string) ([]string, error) {
+	f, err := os.Open(path)
+	if err != nil {
 		return nil, err
 	}
 	defer f.Close()
@@ -65,7 +75,7 @@ func LoadGitignore(path string) (*Gitignore, error) {
 	if err := scanner.Err(); err != nil {
 		return nil, err
 	}
-	return NewGitignore(lines), nil
+	return lines, nil
 }
 
 // Empty reports whether the matcher holds no rules.
