@@ -66,6 +66,9 @@ go-project-dump . --format xml -o context.xml
 # Two services into one combined file
 go-project-dump ./frontend ./backend -o fullstack.md
 
+# Load extra exclude globs from a file, one per line (gitignore-style)
+go-project-dump . --exclude-file .dumpignore
+
 # Just the numbers (files, size, estimated tokens) — no source
 go-project-dump . --stats
 ```
@@ -84,6 +87,8 @@ Flags:
       --max-size <size>  skip files larger than this (default 1MB; e.g. 500KB, 2MB, 0=off)
       --no-gitignore     do not honour each project's .gitignore
       --exclude <glob>   extra ignore glob, repeatable (e.g. --exclude '*.min.js')
+      --exclude-file <path>  read extra ignore globs from a file, one per
+                         line, gitignore-style (repeatable)
       --include <glob>   only include files matching this glob, repeatable
       --stats            print only the summary (files, size, tokens)
       --version          print version and exit
@@ -107,8 +112,9 @@ Files are included unless they match one of these:
 3. **Binary / media / archive extensions** (`.exe`, `.png`, `.zip`, `.pdf`, …)
    and any file containing null bytes.
 4. **Size limit** — files larger than `--max-size` (default 1 MB; `0` disables).
-5. **`--exclude` globs**, then **`--include` globs** (if `--include` is set, only
-   matching files are kept).
+5. **`--exclude` globs** (including any loaded via **`--exclude-file`**), then
+   **`--include` globs** (if `--include` is set, only matching files are
+   kept).
 
 Unreadable files are skipped with a warning rather than aborting the run.
 

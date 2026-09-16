@@ -35,14 +35,15 @@ func run(argv []string) int {
 	fs := flag.NewFlagSet("go-project-dump", flag.ContinueOnError)
 
 	var (
-		output      string
-		format      string
-		maxSize     string
-		noGitignore bool
-		statsOnly   bool
-		showVersion bool
-		excludes    stringList
-		includes    stringList
+		output       string
+		format       string
+		maxSize      string
+		noGitignore  bool
+		statsOnly    bool
+		showVersion  bool
+		excludes     stringList
+		includes     stringList
+		excludeFiles stringList
 	)
 
 	fs.StringVar(&output, "output", "", "write output to a file (default: stdout)")
@@ -55,6 +56,7 @@ func run(argv []string) int {
 	fs.BoolVar(&showVersion, "version", false, "print version and exit")
 	fs.Var(&excludes, "exclude", "extra ignore glob (repeatable, e.g. --exclude '*.test.js')")
 	fs.Var(&includes, "include", "only include files matching this glob (repeatable)")
+	fs.Var(&excludeFiles, "exclude-file", "read extra ignore globs from a file, one per line, gitignore-style (repeatable)")
 
 	fs.Usage = func() { usage(fs) }
 
@@ -88,6 +90,15 @@ func run(argv []string) int {
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error: invalid --max-size %q: %v\n", maxSize, err)
 		return 1
+	}
+
+	for _, ef := range excludeFiles {
+		lines, err := readLines(ef)
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "Error: reading --exclude-file %q: %v\n", ef, err)
+			return 1
+		}
+		excludes = append(excludes, lines...)
 	}
 
 	switch strings.ToLower(format) {
@@ -178,6 +189,9 @@ Flags:
       --max-size <size>  skip files larger than this (default 1MB; e.g. 500KB, 2MB, 0=off)
       --no-gitignore     do not honour each project's .gitignore
       --exclude <glob>   extra ignore glob, repeatable (e.g. --exclude '*.min.js')
+      --exclude-file <path>
+                         read extra ignore globs from a file, one per line,
+                         gitignore-style (repeatable)
       --include <glob>   only include files matching this glob, repeatable
       --stats            print only the summary (files, size, tokens)
       --version          print version and exit
@@ -187,6 +201,7 @@ Examples:
   go-project-dump ./frontend ./backend -o dump.md
   go-project-dump . --format xml -o context.xml
   go-project-dump . --include '*.go' --exclude '*_test.go'
+  go-project-dump . --exclude-file .dumpignore
   go-project-dump . --stats
 `, version)
 }
